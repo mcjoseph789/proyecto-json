@@ -1,0 +1,78 @@
+<!-- <h1>Casos positivos de COVID-19 en Colombia.</h1>
+<div class="container">
+  <div *ngIf="datos!=null; else espera">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered row-border hover">
+      <thead>
+      <tr>
+        <th>Fecha Reporte</th><th>Ciudad</th><th>Edad</th><th>Sexo</th><th>Fuente del Contagio</th><th>Estado</th><th>País al que viajó</th><th>Recuperado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of datos">
+        <td>{{replace(data.fecha_reporte_web)}}</td>
+        <td>{{data.ciudad_municipio_nom}}</td>
+        <td>{{data.edad}}</td>
+        <td>{{data.sexo}}</td>
+        <td>{{data.fuente_tipo_contagio}}</td>
+        <td>{{data.estado}}</td>
+        <td>{{data.pais_viajo_1_nom}}</td>
+        <td>{{data.recuperado}}</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  <ng-template #espera>Generando datos!</ng-template>
+</div> -->
+<p>
+  <mat-toolbar>
+    <span>Contagiados COVID-19 en Colombia</span>
+  </mat-toolbar>
+</p>
+
+
+<div class="container mat-elevation-z8">
+  <h2>Tabla de contagiados</h2>
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="fecha_reporte_web">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let element"> {{replace(element.fecha_reporte_web)}} </td>
+    </ng-container>
+    <ng-container matColumnDef="ciudad_municipio_nom">
+      <th mat-header-cell *matHeaderCellDef> Ciudad </th>
+      <td mat-cell *matCellDef="let element"> {{element.ciudad_municipio_nom}} </td>
+    </ng-container>
+    <ng-container matColumnDef="edad">
+      <th mat-header-cell *matHeaderCellDef> Edad </th>
+      <td mat-cell *matCellDef="let element"> {{element.edad}} </td>
+    </ng-container>
+    <ng-container matColumnDef="sexo">
+      <th mat-header-cell *matHeaderCellDef> Sexo </th>
+      <td mat-cell *matCellDef="let element"> {{element.sexo}} </td>
+    </ng-container>
+    <ng-container matColumnDef="fuente_tipo_contagio">
+      <th mat-header-cell *matHeaderCellDef> Fuente de Contagio </th>
+      <td mat-cell *matCellDef="let element"> {{element.fuente_tipo_contagio}} </td>
+    </ng-container>
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef> Estado </th>
+      <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+    </ng-container>
+    <ng-container matColumnDef="pais_viajo_1_nom">
+      <th mat-header-cell *matHeaderCellDef> País al que viajó </th>
+      <td mat-cell *matCellDef="let element"> {{ !element.pais_viajo_1_nom ? "No viajó." : element.pais_viajo_1_nom }}</td>
+    </ng-container>
+    <ng-container matColumnDef="recuperado">
+      <th mat-header-cell *matHeaderCellDef> Recuperado </th>
+      <td mat-cell *matCellDef="let element"> {{element.recuperado}} </td>
+    </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
